@@ -9,7 +9,7 @@ Plex Media Server:
 AppData\Local\Plex Media Server
 
 
-#convert .py to exe
+#convert .py to exe:
 pip install pyinstaller
 
 pyinstaller --onefile -w 'plex_auto_backup.py'
