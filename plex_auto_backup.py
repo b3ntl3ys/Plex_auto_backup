@@ -152,7 +152,7 @@ class FolderZipper(QWidget):
         save_path_with_datetime = f"{save_path_parts[0]}_{current_datetime_str}{save_path_parts[1]}" 
 
         self.zip_thread = ZipThread(self.folder_path, save_path_with_datetime)
-        self.zip_thread.finished.connect(self.zip_thread_finished) 
+        self.zip_thread.finished.connect(self.zip_thread_finished)
         self.zip_thread.start()
 
         registry_key = r"HKEY_CURRENT_USER\Software\Plex, Inc."
@@ -192,21 +192,6 @@ class ZipThread(QThread):
 
         self.finished.emit()
 
-        def export_reg(self):
-            key_path = r'Software\Plex, Inc.\Plex Media Server'
-            key_name = 'FolderZipper'
-
-            try:
-                key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, key_path, 0, winreg.KEY_READ)
-                value, reg_type = winreg.QueryValueEx(key, key_name)
-                winreg.CloseKey(key)
-
-                with open(self.save_path + '.reg', 'w') as reg_file:
-                    reg_file.write(value)
-
-            except OSError as e:
-                print(f'Error exporting registry key: {e}')
-
 
 if __name__ == '__main__':
     app = QApplication([])
@@ -219,4 +204,3 @@ if __name__ == '__main__':
     #folder_zipper.update_countdown()
     
     app.exec_()
-
