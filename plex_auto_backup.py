@@ -98,12 +98,9 @@ class FolderZipper(QWidget):
         self.start_with_windows_checkbox = start_with_windows_checkbox
         self.backup_time_edit = backup_time_edit
 
-        
         self.countdown_timer.stop()
-        self.next_zip_time = self.get_next_backup_time()
         self.countdown_timer.start(1000)
-        self.countdown_label.setText('Next zipping in {} days, {} hours, {} minutes, {} seconds'.format(self.interval, 0, 0, 0))
-        self.update_countdown() 
+        
 
     def update_backup_time(self, time):
         self.settings.setValue('backup_time', time)
@@ -132,7 +129,6 @@ class FolderZipper(QWidget):
     def update_export_plex_registry_key_setting(self):
         self.export_plex_registry_key = self.sender().isChecked()
         self.settings.setValue('export_plex_registry_key', self.export_plex_registry_key)
-
 
     def choose_folder(self):
         options = QFileDialog.Options()
